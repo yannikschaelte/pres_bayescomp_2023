@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YS BayesComp</title>
+
+    <meta name="description" content="Yannik Schaelte BayesComp presentation">
+    <meta name="author" content="Yannik Schaelte">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="stylesheet" href="reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+
+    <link rel="stylesheet" href="ystyle.css">
+</head>
+
+<!--
+Helmholtz colors:
+Purple #69005F
+Red #FF506E
+-->
+
+<!--
+Custom colors:
+Pink #880e4f
+-->
+
+<body>
+    <div class="reveal">
+        <div class="slides" id="id_slides">
+
+
+            <section data-background-color="#ffffff">
+                <img src="img/front.svg" alt="Front page" class="r-stretch" />
+            </section>
+
+
+            <section>
+                <h2>Systems Biology</h2>
+                <img src="img/intro100.svg" class="r-stretch" />
+            </section>
+
+            <section>
+                <h2>Software</h2>
+                <img src="img/tools.svg" class="r-stretch" />
+                <!--<ol>
+                    <li><font style="font-weight: bold">pyPESTO</font> (<a href="https://github.com/icb-dcm/pypesto">https://github.com/icb-dcm/pypesto</a>): parameter estimation for ODE models, especially optimization, sampling, profiles</li>
+                    <li><font style="font-weight: bold">pyABC</font> (<a href="https://github.com/icb-dcm/pyabc">https://github.com/icb-dcm/pyabc</a>): distributed likelihood-free inference via ABC-SMC</li>
+                    <li><font style="font-weight: bold">PEtab</font> (<a href="https://github.com/petab-dev/petab">https://github.com/petab-dev/petab</a>): standardized format for parameter estimation problems</li>
+                    <li><font style="font-weight: bold">AMICI</font> (<a href="https://github.com/amici-dev/amici">https://github.com/amici-dev/amici</a>): ODE simulation and sensitivity analysis</li>
+                    <li><font style="font-weight: bold">yaml2sbml</font> (<a href="https://github.com/yaml2sbml-dev/yaml2sbml">https://github.com/yaml2sbml-dev/yaml2sbml</a>): definition of ODE problems in YAML and conversion to SBML</li>
+                    <li><font style="font-weight: bold">FitMultiCell</font> (<a href="https://gitlab.com/fitmulticell/fit">https://gitlab.com/fitmulticell/fit</a>): pipeline for inference on multi-scale multi-cellular models</li>
+                    <li><font style="font-weight: bold">PESTO</font> (<a href="https://github.com/icb-dcm/pesto">https://github.com/icb-dcm/pesto</a>): MatLab based parameter estimation toolbox, predecessor of pyPESTO</li>
+                </ol>-->
+            </section>
+
+            <section>
+                <h2>Model types</h2>
+                <img src="img/multiscale_models.svg" class="r-stretch" />
+                <div style="text-align: right;"><small>based on Hasenauer et al., Coupl. Sys. 2015</small></div>
+            </section>
+
+            <section>
+                <h2>Example: Tumor growth multi-scale model</h2>
+                <small>based on Jagiella et al., Cell Systems 2017</small>
+                <img src="img/dividing_bg_transparent_small.gif" height="300px" alt="Tumor gif" />
+                <ul>
+                    <li>cells modeled as interacting stochastic agents, dynamics of extracellular substances by PDEs
+                    </li>
+                    <li>simulate up to 10<sup>6</sup> cells</li>
+                    <li>10s - 1h for one forward simulation</li>
+                </ul>
+            </section>
+
+
+            <section data-transition="slide-in fade-out">
+                <table>
+                    <tr>
+                        <td>
+                            <h2>What we tried</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>multi-start local methods
+                                    <ul>
+                                        <li>deterministic gradient descent</li>
+                                        <ul>
+                                            <li>Levenberg-Marquardt</li>
+                                            <li>interior-point</li>
+                                            <li>trust-region</li>
+                                        </ul>
+                                        <li>stochastic gradient descent</li>
+                                        <li>Bayesian optimization</li>
+                                    </ul>
+                                </li>
+                                <li>global methods
+                                    <ul>
+                                        <li>simulated annealing</li>
+                                        <li>&gt; 20 particle methods</li>
+                                        <li>enhanced scatter search</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section data-transition="fade-in slide-out">
+                <table>
+                    <tr>
+                        <td>
+                            <h2 style="color: #b71c1c">Failed</span></h2>
+                        </td>
+                        <td>
+                            <h2 style="color: #1b5e20">Worked</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <span style="color: #b71c1c">
+                                <ul>
+                                    <li>multi-start local methods
+                                        <ul>
+                                            <li>deterministic gradient descent</li>
+                                            <ul>
+                                                <li>Levenberg-Marquardt</li>
+                                                <li>interior-point</li>
+                                                <li>trust-region</li>
+                                            </ul>
+                                            <li>stochastic gradient descent</li>
+                                            <li>Bayesian optimization</li>
+                                        </ul>
+                                    </li>
+                                    <li>global methods
+                                        <ul>
+                                            <li>simulated annealing</li>
+                                            <li>&gt; 20 particle methods</li>
+                                            <li>enhanced scatter search</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </span>
+                        </td>
+                        <td style="vertical-align: top;">
+                            -
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section data-background=var(--main-color) data-background-transition="zoom">
+                <h1>ABC</h1>
+            </section>
+
+
+            <section data-transition="slide-in fade-out">
+                <h2>ABC</h2>
+                simulation-based approximate Bayesian computation
+                <br /><br />
+                <div class="r-stack" id="id_abc">
+                    <img src="img_exact/no_likelihood.svg" width="400px" />
+                    <script>
+                        var node = document.getElementById("id_abc");
+                        node.innerHTML += "<img class='fragment' src='img/abc_principles-0.svg' style='background-color: #ffffff;'/>"
+                        var i;
+                        for (i = 1; i < 8; i++) {
+                            node.innerHTML += "<img class='fragment' src='img/abc_principles-" + i + ".svg' style='background-color: #ffffff;'/>"
+                        }
+                    </script>
+                </div>
+                <div class="fragment">
+                    <ul>
+                        conflicting goals:
+                        <li>reduce approximation error $\varepsilon$</li>
+                        <li>keep high acceptance rates</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section data-transition="fade-in slide-out">
+                <h2>ABC-SMC</h2>
+                combine with a sequential Monte-Carlo scheme
+                <div class="r-stack">
+                    <img src='img/abc_principles-8.svg' style='background-color: #ffffff;' />
+                    <img class='fragment' src='img/abc_principles-9.svg' style='background-color: #ffffff;' />
+                </div>
+                <small>similar to Toni et al., JRS 2009</small>
+            </section>    
+    
+            <section>
+                <img src="img_pyabc/logo.svg" alt="pyABC logo black"/><br/>
+                <span style="font-family: monospace"><a href="https://github.com/icb-dcm/pyabc" target="_blank">github.com/icb-dcm/pyabc</a></span><br/>
+                <small>Klinger et al., Bioinformatics 2018 and Schälte et al., JOSS 2022</small>
+                <img src="img_pyabc/points_extended.svg" style="width: 90%;"
+                     alt="Points"/>
+            </section>  
+    
+            <section>
+                <h2>Parallel backends: 1 to 1,000s cores</h2>
+                <img src="img_pyabc/parallelization.svg" style="width: 40%"
+                     alt="Parallelization backends"/>
+            </section>
+    
+    
+            <section>
+                <h2>Parallelization strategies</h2>
+                <small>Klinger et al., CMSB Proceedings 2017</small>
+                <img src="img_pyabc/strategies_illustration_small.svg"
+                     alt="Parallelization strategies"/>
+            </section>
+
+
+            <section>       
+                <section data-transition="slide-in fade-out">
+                    <h2>Application example</h2>
+                    <img src="img_pyabc/tumor_kdes_small.gif" class="stretch"
+                        alt="Tumor KDEs"/>
+                    <div class="conclusion" style="background-color: #ffffff">
+                        ABC worked where many other methods had failed.
+                    </div>
+                </section>
+        
+        
+                <section data-transition="fade-in slide-out">
+                    <h2>Application example</h2>
+                    <img src="img_pyabc/dflt_37.png" class="stretch" alt="Tumor final KDE"/>
+                    <div class="conclusion">
+                        ABC worked where many other methods had failed.
+                    </div>
+                </section>
+        
+        
+                <section>
+                    <img class="r-stretch" src="img_pyabc/tumor_integration.svg"/><br/>
+                    Uncertainty-aware predictions, easy data integration.
+                </section>
+
+                <section>
+                    <h2>Define summary statistics</h2>
+                    <img src="img_pyabc/tumor_sumstat.svg" class="stretch"
+                        alt="Tumor summary statistics"/>
+                </section>
+        
+        
+                <section data-background="img_pyabc/server_white.svg">
+                    <span style="font-weight: bold; font-size: 1.2em;">
+                    <ul>
+                        <li>400 cores</li>
+                        <li>2 days</li>
+                        <li>1.8e6 simulations</li>
+                    </ul>
+                    </span>
+                </section>
+            </section>
+    
+    
+            <section>
+                <img src="img_pyabc/logo_fmc_long.svg.png" height="70px"/><br/>
+                <a href="https://fitmulticell.gitlab.io/">fitmulticell.gitlab.io</a><br/>
+                a platform for modeling, simulation and inference for multi-scale multi-cellular models
+                <img src="img_pyabc/morpheus_gui.png" class="stretch" alt="Morpheus"/>
+                <div style="text-align: right;">
+                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., bioRxiv 2023</small>
+                </div>
+            </section>
+
+            <!--<section>
+                <h2>Approximate Bayesian Posterior</h2>
+                <p>
+                    We want:
+                    \[\pi(\theta|y_\text{obs}) \propto \color{red}{\pi(y_\text{obs}|\theta)}\pi(\theta)\]
+                </p>
+                <p class="fragment">
+                    We get:
+                    \[\pi_{ABC}(\theta|y_\text{obs}) \propto \color{red}{\int I(\{d(y, y_\text{obs}) \leq
+                    \varepsilon\})\pi(y|\theta)\operatorname{dy}}\pi(\theta) \approx
+                    \frac{1}{N} \sum_{i=1}^N\delta_{\theta^{(i)}}(\theta)\]
+                    with distance $d$, threshold $\varepsilon>0$, and summary
+                    statistics $s$
+                </p>
+            </section>-->
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom">
+                <h1>Efficient exact ABC with noise</h1>
+            </section>
+
+            <section>
+                <div class="r-stack">
+                    <img src="img_exact/nonoise_papers.svg" />
+                    <div>
+                        <h2>Problem: (biological) data are noisy</h2>
+                        <img src="img_exact/abc_jackson.png" width="300px" />
+                    </div>
+                </div>
+
+                <aside class="notes">
+                </aside>
+            </section>
+
+            <section>
+                <div>
+                    <h2>What happens when ignoring noise in ABC?</h2>
+                    <div>
+                        <p>Assume: Model $y\sim \pi(y|\theta)$ does not
+                            account for noise.</p>
+                        <p>But: Measurements are noisy, $\bar y_\text{obs} \sim \pi(\bar
+                            y|y,\theta)$.
+                        </p>
+                    </div>
+                    <br />
+
+                    <img src="img_exact/motivation_data.svg" class="r-stretch" />
+                </div>
+            </section>
+
+
+            <section>
+                <h2>How to account for noise?</h2>
+                <div class="r-stack">
+                    <div>
+                        <div class="r-stack">
+                            <img src="img_exact/concept.svg" />
+                            <img class="fragment" data-fragment-index="1" src="img_exact/concept2.svg"
+                                style="background-color: #ffffff" />
+                            <img class="fragment" data-fragment-index="2" src="img_exact/concept3.svg"
+                                alt="3-way noise assessment concept" style="background-color: #ffffff" />
+                        </div>
+                        <blockquote class="fragment" data-fragment-index="2">
+                            &ldquo;ABC gives exact inference for the wrong model&rdquo;
+                            <br /><small>Richard Wilkinson, Stat. App. Gen. Mol. Bio. 2013</small>
+                        </blockquote>
+                    </div>
+                    <div class="fragment" data-fragment-index="3"
+                        style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color)">
+                        <ul style="list-style-type: '✓ ';">
+                            <li>noise model permits <b>exact</b> likelihood-free inference</li>
+                            <li>applicable to any <b>stochastic model</b> and <b>noise model</b></li>
+                            <li><b>parameterized</b> noise model</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Problem: Existing methods do not scale in practice</h2>
+                <img src="img_exact/cr_datapoint_scaling_predicted_talk.svg" />
+                <img src="img_exact/cr_datapoint_scaling_ours_talk.svg" class="fragment" />
+            </section>
+
+
+            <section>
+                <div style="text-align: left; display: flex;">
+                    <div>
+                        <h2>Can we make it efficient?</h2>
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">
+                                How to <em>propose parameters</em>?
+                                <br />
+                                $\rightsquigarrow$ integrate in <b>SMC</b> via <b>tempering</b>, $\pi(\bar
+                                y_\text{obs}|y,\theta)^{\color{red}{1/T_t}}$.
+                            </li>
+                            <br /><br />
+                            <li class="fragment" data-fragment-index="2">
+                                How to choose the <em>normalization $c$</em>?
+                                <br />
+                                $\rightsquigarrow$ based on <b>previous samples</b>, and avoid decapitation via
+                                <b>reweighting</b>
+                                $\tilde w :=
+                                \color{red}{\frac{\left(\frac{\pi(\bar
+                                y_\text{obs}|y,\theta)}{c_t}\right)^{1/T_t}}{\min\left[\frac{\pi(\bar
+                                y_\text{obs}|y,\theta)}{c_t},1\right]^{1/T_t}}}\cdot\frac{\pi(\theta)}{g_t(\theta)}$
+                            </li>
+                            <br /><br />
+                            <li class="fragment" data-fragment-index="3">
+                                How to choose the <em>temperatures $T_t$, $t=1,\ldots,n_t$</em>?
+                                <br />
+                                $\rightsquigarrow$ <b>predict the acceptance rate</b>
+                                $\gamma = \int\left(\int\min\left[\left(\frac{\pi(\bar y_\text{obs}
+                                |y,\theta)}{c_{t}}\right)^{1/T},1\right]\pi(y|\theta)\mathop{dy}\right)g_{t}(\theta)\mathop{d\theta}$
+                                <!--$\gamma_T \approx \frac 1 N \sum_{i=1}^N
+                            v_t(\theta_i^{(t-1)}) \min\left[\left(\frac{\pi(y_\text{obs} |
+                            y_i^{(t-1)},\theta_i^{(t-1)})}{c_t}\right)^{1/T},1\right]$-->
+                                <br />
+                                (esp. allows choosing $T_1$)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <span style="padding: 10px;">
+                        <div class="r-stack">
+                            <img class="fragment" data-fragment-index="1" src="img_exact/alg98.svg" width="700px"
+                                style="background-color: #ffffff;" />
+                            <img class="fragment" data-fragment-index="2" src="img_exact/alg99.svg" width="700px"
+                                style="background-color: #ffffff;" />
+                            <img class="fragment" data-fragment-index="3" src="img_exact/alg100.svg" width="700px"
+                                style="background-color: #ffffff;" />
+                        </div>
+                    </span>
+                </div>
+            </section>
+
+
+            <section>
+                <div style="text-align: left;">
+                    <h2>Theorem (Exact inference)</h2>
+                    <p>
+                        Using the <b>modified kernel</b> with $c>\pi(\bar y_\text{obs}|y,\theta)$
+                        $\forall y,\theta$, we sample from the <b>true posterior</b>
+                        \[\pi_\text{ABC}(\theta | \bar y_\text{obs}) = \pi(\theta | \bar y_\text{obs}) \propto
+                        \int\pi(\bar y_\text{obs}|y,\theta)p(y|\theta)\mathop{dy}\cdot\pi(\theta)\]
+                        assuming <b>noisy data</b> $\bar y_\text{obs}\sim\pi(\bar y|y,\theta)$.
+                    </p>
+                    <div>
+                        <ul>
+                            <li>non-trivial <b>noise</b> allows to do <b>exact likelihood-free</b>
+                                inference
+                            </li>
+                            <li>applicable to <b>stochastic models</b></li>
+                            <li><b>parameterized noise</b> model</li>
+                        </ul>
+                    </div>
+            </section>
+
+
+            <section>
+                <h2>Evaluation</h2>
+                <img src="img_exact/results.svg" class="r-stretch" />
+                <div
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>Applicable to <b>various model</b> and <b>noise model</b> types</li>
+                        <li>orders of magnitude <b>speed-up</b></li>
+                        <li><b>scales</b> to challenging application problems</li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom">
+                <h1>Robust and efficient ABC via inverse machine learning models</h1>
+
+                <aside class="notes">
+                </aside>
+            </section>
+
+
+            <section>
+                <h3>Problem:</h3>
+                <h2>Fitting heterogeneous data</h2>
+                <img src="img_robust/dist_sumstat_problem_illustration.svg" class="r-stretch" />
+            </section>
+
+
+            <section>
+                <h2>How to account for data informativeness?</h2>
+                <div class="r-stack">
+                    <img src="img_info/concept0.svg" class="" height="300px" />
+                    <img src="img_info/concept.svg" class="fragment" style="background-color: #ffffff;"
+                        height="300px" />
+                </div>
+                <br />
+                <div style="text-align: left;">
+                    <ul>
+                        <li class="fragment">construct low-dimensional <b>summary statistics</b> (Fearnhead &
+                            Prangle, JRSS 2012)
+                        </li>
+                        <br />
+                        <li class="fragment">or: define <b>sensitivity weights</b> via the sensitivity matrix
+                            $S = \nabla_{\bar y} s(\bar y_\text{obs})$,
+                            $q_{i_y} = \sum_{i_\theta=1}^{n_\theta} \frac{\left|S_{i_yi_\theta}\right|}{
+                            \sum_{j_y=1}^{n_y}\left|S_{j_yi_\theta}\right|}$
+                        </li>
+                        <li class="fragment"><b>combine</b> with scale normalization (Prangle, Bay. A. 2017) and outlier correction  (Schälte et al., bioRxiv 2022) via
+                            <b>adaptive weighting</b> in an <b>SMC</b> framework
+                        </li>
+                        <li class="fragment">learn functions of parameters $\lambda(\theta)$ to capture <b>higher-order
+                                moments</b></li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <div style="text-align: left">
+                    <h2>Theorem (Optimal summary statistics)</h2>
+                    [...] Given $\lambda:\mathbb{R}^{n_\theta}\rightarrow\mathbb{R}^{n_\lambda}$ such that
+                    $\mathbb{E}_{\pi(\theta)}[|\lambda(\theta)|]<\infty$, define summary statistics as the
+                        conditional expectation $$s(y) :=\mathbb{E}[\lambda(\Theta)|Y=y]=\int
+                        \lambda(\theta)\pi(\theta|y)d\theta.$$
+                        Then, it holds
+                        $\left\lVert{\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs})] -
+                        s(y_\text{obs})}\right\rVert \leq \varepsilon$, and therefore
+                        \begin{equation}\label{eq:sreg_conv} \lim_{\varepsilon\rightarrow
+                        0}\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs}
+                        )]=\mathbb{E}[\lambda(\Theta)|Y=y_\text{obs}]. \end{equation}
+
+                        <p>
+                            In practice: Train regression model $s: y \mapsto \lambda(\theta) =
+                            (\theta^1,\ldots,\theta^k)$.
+                        </p>
+                </div>
+            </section>
+
+            
+            <section>
+                <h2>Evaluation: Simple test model</h2>
+                <img src="img_info/figure_demo_all.svg" class="r-stretch" />
+                <div
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>only <b>combination</b> of <em>scale normalization</em>, <em>informativeness
+                                assessment</em>, and <em>regression target augmentation</em> permits accurate inference
+                        </li>
+                        <li>sensitivity weights give further <b>insights</b></li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Evaluation: Agent-based tumor spheroid model <img src="img_info/dividing_bg_transparent_small.gif"
+                        width="100px" /></h2>
+                <img src="img_info/figure_tumor_fits_and_weights_0.1.svg" class="r-stretch" />
+                <div
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>can via sensitivity weighting in <b>complex application</b> simultaneously account for
+                            <b>informativeness</b> and <b>outliers</b>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                </aside>
+            </section>
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom" data-auto-animate>
+                <h1>Amortized inference for pharmacological mixed-effects models</h1>
+            </section>
+
+            <section>
+              <h2>mixed-effects modeling</h2>
+              <img src="img_ame/mixed_effects.svg"/>
+              <div style="text-align: left;">
+                <table style="border: none;" class="fragment">
+                  <tr style="border: none;"><td style="border: none;">dynamical model:</td><td style="border: none;">$\dot x = f(x,\theta)$</td></tr>
+                  <tr style="border: none;"><td style="border: none;">observables:</td><td style="border: none;">$y = h(x, \theta) + \varepsilon$</td></tr>
+                  <tr style="border: none;"><td style="border: none;">parameters:</td><td style="border: none;">$\theta = A\alpha + B\beta,\quad\beta\sim\mathcal{N}(0,\Sigma)$</td></tr>
+                </table>
+              </div>
+            </section>
+
+            <section>
+                <h2>the problem</h2>
+                <ul style="text-align: left;">
+                  <li>
+                    <b>estimate parameters:</b> maximize over $\alpha$ and $\Sigma$ the likelihood of data $y_\text{obs}$, marginalized over random effects $\beta$,
+                    $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\color{red}{\pi(y_i|\theta)}\pi(\theta|\alpha,\Sigma)d\theta$$
+                  </li>
+                  <li class="fragment" data-fragment-index="1"><b style="color: var(--main-color);">problem: evaluating these (high-dim) integrals is challenging</b>,<br/>
+                    especially with many individuals<br/><br/></li>
+                </ul>
+                <img class="fragment" data-fragment-index="1" src="img_ame/compute_time.svg" class="r-stretch"/>
+              </section>
+              
+              <section>
+                <h2>amortized inference via invertible neural networks</h2>
+                you have to solve many similar problems? amortize the solution!
+                <img src="img_ame/bayesflow.svg" class="r-stretch"/>
+                <div style="text-align:right;"><small>similar to: Radev et al., 2021</small></div>
+              </section>
+        
+              <section>
+                <ul style="text-align: left;">
+                  <li>
+                    parameter estimation requires repeatedly evaluating an integral
+                    $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\pi(y_i|\theta)\pi(\theta|\alpha,\Sigma)d\theta$$
+                  </li>
+                </ul>
+                <br/>
+                <h2 class="fragment">our method</h2>
+                <ul style="text-align: left;">
+                  <li class="fragment" style="text-align: left;">
+                    <b>idea:</b> rewrite in terms of an <b>individual-specific posterior:</b>
+                    $$\begin{split}\pi(y_\text{obs}|\alpha,\Sigma) &= \prod_i\pi(y_i)\int\pi(\theta|y_i)\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}d\theta \\&= \prod_i\pi(y_i)\mathbb{E}_{\theta\sim\pi(\theta|y_i)}\left[\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}\right]\end{split}$$
+                  </li>
+                  <li class="fragment">... and approximate the posterior using a <b style="color: var(--main-color);">neural density estimator</b> trained on synthetic data!</li>
+                </ul>
+              </section>
+        
+              <section>
+                <h2>results</h2>
+                <div class="fragment" data-fragment-index="0" style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                
+                    <ul style="list-style-type: '✓ ';">
+                    <li class="fragment" data-fragment-index="0">NN <b>fits the posterior</b> well</li>
+                    <li class="fragment" data-fragment-index="1">after training once ($1-2h$), the optimization is <b>very fast</b> ($s-min$)</li>
+                    <li class="fragment" data-fragment-index="2">even <b>uncertainty analysis</b> easily possible</li>
+                    </ul>
+                </div>
+                <div class="r-stack">
+                  <img class="fragment current-visible" data-fragment-index="0" src="img_ame/ame_results_fit.svg" height="250px"/>
+                  <img class="fragment current-visible" data-fragment-index="1" src="img_ame/ame_results_speedup.svg" height="250px"/>
+                  <img class="fragment" data-fragment-index="2" src="img_ame/ame_results_uncertainty.png" height="250px"/>
+                </div>
+              </section>
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom" data-auto-animate>
+                <h1>Summary</h1>
+            </section>
+
+
+            <section data-auto-animate>
+                <h1>Summary</h1>
+
+                <div style="text-align: left; display: flex;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>SBI enables analyzing complex stochastic models of biological systems</li>
+                        <li>ABC is widely applicable</li>
+                        <li>handling noise correctly matters</li>
+                        <li>combine modeling and machine learning to learn more from simulations</li>
+                        <li>neural density estimation opens new possibilities</li>
+                    </ul>
+                    <span style="padding: 10px;">
+                        <img src="img_pyabc/rose_hammer.svg"/><br/>
+                        <small>Not everything is a nail.</small>
+                    </span>
+                </div>
+            </section>
+
+
+            <section data-background="img/group.jpg">
+                <div style="background-color: #ffffff99; text-align: left; padding: 30px;">
+                    <h1>Thanks! Questions?</h1><br/><br/>
+                    <img src="img/ack.png" />
+                </div>
+            </section>
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom" data-auto-animate>
+                <h1>Backup</h1>
+            </section>
+
+
+            <section>
+                <h2>Scale-normalizing and outlier-robust adaptive distances</h2>
+                <ul>
+                    <li>Integrate heterogeneous data scales via a scale-normalizing adaptive distance
+                        $$d(y,y_\text{obs}) = \left(\sum_{i_y}(r_{i_y} \cdot (y_{i_y} -
+                        y_{\text{obs},{i_y}}))^2\right)^{1/2}$$
+                        with weights adjusted in every ABC-SMC generation (Prangle, Bay. Ana., 2017)
+                    </li>
+                    <li>Problem: outliers can severely affect results
+                        <img src="img_robust/figure_motivation.svg" />
+                    </li>
+                    <li>Use <b>robust norms</b> (e.g. L1) with <b>adaptive weights</b> to normalize
+                        scales and down-weight outliers
+                    </li>
+
+                </ul>
+            </section>
+
+
+            <section>
+                <h2>Adaptive population sizes</h2>
+                <small>Klinger et al., CMSB Proceedings 2017</small>
+                <img src="img_pyabc/adaptive_population_size_illustrations.svg"
+                     alt="Adaptive population sizes"/>
+                idea: adapt population size trying to match a target accuracy
+            </section>
+
+
+            <section>
+                <h2>Self-tuning distance functions</h2>
+                <small>based on Prangle, Bayesian Analysis 2015</small><br/>
+                <img src="img_pyabc/adaptive_distances.svg" class="stretch"
+                     alt="Adaptive distances"/>
+            </section>
+
+
+            <section>
+                <h2>And ...</h2>
+                <img src="img/and.svg" alt="And"/>
+                <h2>...</h2>
+            </section>
+
+
+
+        </div>
+    </div>
+
+
+    <script src="reveal.js/dist/reveal.js"></script>
+    <script src="reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="reveal.js/plugin/notes/notes.js"></script>
+    <script src="reveal.js/plugin/search/search.js"></script>
+    <script src="reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="reveal.js/plugin/math/math.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes,
+                RevealMath, RevealZoom]
+        });
+        Reveal.configure({ slideNumber: 'c/t' });
+        Reveal.configure({ showSlideNumber: 'all' });
+    </script>
+
+</body>
+
+</html>
