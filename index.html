@@ -205,6 +205,16 @@ Pink #880e4f
                 <img src="img_pyabc/logo.svg" alt="pyABC logo black"/><br/>
                 <span style="font-family: monospace"><a href="https://github.com/icb-dcm/pyabc" target="_blank">github.com/icb-dcm/pyabc</a></span><br/>
                 <small>Klinger et al., Bioinformatics 2018 and Schälte et al., JOSS 2022</small>
+                <pre>
+                    <code data-trim data-noescape class="language-python">
+# specify problem and parallelization
+abc = ABCSMC(model, prior, distance, sampler)
+# pass data
+abc.new(db, data)
+# run it
+abc.run()
+                    </code>
+                </pre>
                 <img src="img_pyabc/points_extended.svg" style="width: 90%;"
                      alt="Points"/>
             </section>  
@@ -709,8 +719,6 @@ Pink #880e4f
                 <img src="img_pyabc/and.svg" alt="And"/>
                 <h2>...</h2>
             </section>
-
-
 
         </div>
     </div>
