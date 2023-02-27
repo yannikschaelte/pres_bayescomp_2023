@@ -274,7 +274,7 @@ Pink #880e4f
                 a platform for modeling, simulation and inference for multi-scale multi-cellular models
                 <img src="img_pyabc/morpheus_gui.png" class="stretch" alt="Morpheus"/>
                 <div style="text-align: right;">
-                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., bioRxiv 2023</small>
+                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., NIC Proc. 2022; Alamoudi et al., bioRxiv 2023</small>
                 </div>
             </section>
 
@@ -368,6 +368,7 @@ Pink #880e4f
                 <div style="text-align: left; display: flex;">
                     <div>
                         <h2>Can we make it efficient?</h2>
+                        <small>Schälte and Hasenauer, Bioinformatics 2020</small>
                         <ul>
                             <li class="fragment" data-fragment-index="1">
                                 How to <em>propose parameters</em>?
@@ -404,11 +405,11 @@ Pink #880e4f
 
                     <span style="padding: 10px;">
                         <div class="r-stack">
-                            <img class="fragment" data-fragment-index="1" src="img_exact/alg98.svg" width="700px"
+                            <img class="fragment" data-fragment-index="1" src="img_exact/alg98.svg" width="600px"
                                 style="background-color: #ffffff;" />
-                            <img class="fragment" data-fragment-index="2" src="img_exact/alg99.svg" width="700px"
+                            <img class="fragment" data-fragment-index="2" src="img_exact/alg99.svg" width="600px"
                                 style="background-color: #ffffff;" />
-                            <img class="fragment" data-fragment-index="3" src="img_exact/alg100.svg" width="700px"
+                            <img class="fragment" data-fragment-index="3" src="img_exact/alg100.svg" width="600px"
                                 style="background-color: #ffffff;" />
                         </div>
                     </span>
@@ -464,6 +465,9 @@ Pink #880e4f
                 <h3>Problem:</h3>
                 <h2>Fitting heterogeneous data</h2>
                 <img src="img_robust/dist_sumstat_problem_illustration.svg" class="r-stretch" />
+                <div style="text-align: right;">
+                    <small>Schälte et al., bioRxiv 2021; Schälte and Hasenauer, bioRxiv 2022</small>
+                </div>
             </section>
 
 
@@ -568,7 +572,7 @@ Pink #880e4f
             </section>
 
             <section>
-                <h2>the problem</h2>
+                <h2>Problem</h2>
                 <ul style="text-align: left;">
                   <li>
                     <b>estimate parameters:</b> maximize over $\alpha$ and $\Sigma$ the likelihood of data $y_\text{obs}$, marginalized over random effects $\beta$,
@@ -581,7 +585,7 @@ Pink #880e4f
               </section>
               
               <section>
-                <h2>amortized inference via invertible neural networks</h2>
+                <h2>Amortized inference via invertible neural networks</h2>
                 you have to solve many similar problems? amortize the solution!
                 <img src="img_ame/bayesflow.svg" class="r-stretch"/>
                 <div style="text-align:right;"><small>similar to: Radev et al., 2021</small></div>
@@ -595,7 +599,10 @@ Pink #880e4f
                   </li>
                 </ul>
                 <br/>
-                <h2 class="fragment">our method</h2>
+                <h2>our method</h2>
+                <div style="text-align: right">
+                    <!--<small>Arruda et al., in prep.</small>-->
+                </div>
                 <ul style="text-align: left;">
                   <li class="fragment" style="text-align: left;">
                     <b>idea:</b> rewrite in terms of an <b>individual-specific posterior:</b>
@@ -606,7 +613,12 @@ Pink #880e4f
               </section>
         
               <section>
-                <h2>results</h2>
+                <h2>Results</h2>
+                <div class="r-stack">
+                  <img class="fragment current-visible" data-fragment-index="0" src="img_ame/ame_results_fit.svg" height="250px"/>
+                  <img class="fragment current-visible" data-fragment-index="1" src="img_ame/ame_results_speedup.svg" height="250px"/>
+                  <img class="fragment" data-fragment-index="2" src="img_ame/ame_results_uncertainty.png" height="250px"/>
+                </div>
                 <div class="fragment" data-fragment-index="0" style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
                 
                     <ul style="list-style-type: '✓ ';">
@@ -614,11 +626,6 @@ Pink #880e4f
                     <li class="fragment" data-fragment-index="1">after training once ($1-2h$), the optimization is <b>very fast</b> ($s-min$)</li>
                     <li class="fragment" data-fragment-index="2">even <b>uncertainty analysis</b> easily possible</li>
                     </ul>
-                </div>
-                <div class="r-stack">
-                  <img class="fragment current-visible" data-fragment-index="0" src="img_ame/ame_results_fit.svg" height="250px"/>
-                  <img class="fragment current-visible" data-fragment-index="1" src="img_ame/ame_results_speedup.svg" height="250px"/>
-                  <img class="fragment" data-fragment-index="2" src="img_ame/ame_results_uncertainty.png" height="250px"/>
                 </div>
               </section>
 
@@ -649,7 +656,8 @@ Pink #880e4f
 
             <section data-background="img/group.jpg">
                 <div style="background-color: #ffffff99; text-align: left; padding: 30px;">
-                    <h1>Thanks! Questions?</h1><br/><br/>
+                    <h1>Thanks! Questions?</h1><br/>
+                    Thanks to: Jan Hasenauer, Emad Alamoudi, Emmanuel Klinger, Elba Raimundez, Zijian Wang, Jonas Arruda, the FitMultiCell and EMUNE consortia, and many more.<br/><br/>
                     <img src="img/ack.png" />
                 </div>
             </section>
@@ -698,7 +706,7 @@ Pink #880e4f
 
             <section>
                 <h2>And ...</h2>
-                <img src="img/and.svg" alt="And"/>
+                <img src="img_pyabc/and.svg" alt="And"/>
                 <h2>...</h2>
             </section>
 
