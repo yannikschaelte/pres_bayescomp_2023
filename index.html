@@ -50,6 +50,7 @@ Pink #880e4f
                 <img src="img/intro100.svg" class="r-stretch" />
             </section>
 
+
             <section>
                 <h2>Software</h2>
                 <img src="img/tools.svg" class="r-stretch" />
@@ -64,11 +65,13 @@ Pink #880e4f
                 </ol>-->
             </section>
 
+
             <section>
                 <h2>Model types</h2>
                 <img src="img/multiscale_models.svg" class="r-stretch" />
                 <div style="text-align: right;"><small>based on Hasenauer et al., Coupl. Sys. 2015</small></div>
             </section>
+
 
             <section>
                 <h2>Example: Tumor growth multi-scale model</h2>
@@ -201,6 +204,7 @@ Pink #880e4f
                 <small>similar to Toni et al., JRS 2009</small>
             </section>
 
+
             <section>
                 <img src="img_pyabc/logo.svg" alt="pyABC logo black" /><br />
                 <span style="font-family: monospace"><a href="https://github.com/icb-dcm/pyabc"
@@ -218,6 +222,7 @@ abc.run()
                 </pre>
                 <img src="img_pyabc/points_extended.svg" style="width: 90%;" alt="Points" />
             </section>
+
 
             <section>
                 <h2>Parallel backends: 1 to 1,000s cores</h2>
@@ -238,7 +243,7 @@ abc.run()
                 a platform for modeling, simulation and inference for multi-scale multi-cellular models
                 <img src="img_pyabc/morpheus_gui.png" class="stretch" alt="Morpheus" />
                 <div style="text-align: right;">
-                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., NIC Proc. 2022; Alamoudi et al., bioRxiv
+                    <small>Starruß et al., Bioinformatics 2014; Alamoudi et al., NIC Proc. 2022; Alamoudi et al., bioRxiv
                         2023</small>
                 </div>
             </section>
@@ -304,8 +309,106 @@ abc.run()
 
 
             <section data-background=var(--main-color) data-background-transition="zoom">
+                <h1>Robust and efficient ABC via inverse regression models</h1>
+            </section>
+
+
+            <section>
+                <h3>Problem:</h3>
+                <h2>Fitting heterogeneous data</h2>
+                <img src="img_robust/dist_sumstat_problem_illustration.svg" class="r-stretch" />
+                <div style="text-align: right;">
+                    <small>Schälte et al., bioRxiv 2021; Schälte and Hasenauer, bioRxiv 2022</small>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>How to account for data informativeness?</h2>
+                <div class="r-stack">
+                    <img src="img_info/concept0.svg" class="" height="300px" />
+                    <img src="img_info/concept.svg" class="fragment" style="background-color: #ffffff;"
+                        height="300px" />
+                </div>
+                <br />
+                <div style="text-align: left;">
+                    <ul>
+                        <li class="fragment">construct low-dimensional <b>summary statistics</b> (Fearnhead &
+                            Prangle, JRSS 2012)
+                        </li>
+                        <br />
+                        <li class="fragment">or: define <b>sensitivity weights</b> via the sensitivity matrix
+                            $S = \nabla_{\bar y} s(\bar y_\text{obs})$,
+                            $q_{i_y} = \sum_{i_\theta=1}^{n_\theta} \frac{\left|S_{i_yi_\theta}\right|}{
+                            \sum_{j_y=1}^{n_y}\left|S_{j_yi_\theta}\right|}$
+                        </li>
+                        <li class="fragment"><b>combine</b> with scale normalization (Prangle, Bay. A. 2017) and outlier
+                            correction (Schälte et al., bioRxiv 2022) via
+                            <b>adaptive weighting</b> in an <b>SMC</b> framework
+                        </li>
+                        <li class="fragment">learn functions of parameters $\lambda(\theta)$ to capture <b>higher-order
+                                moments</b></li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <div style="text-align: left">
+                    <h2>Theorem (Optimal summary statistics)</h2>
+                    [...] Given $\lambda:\mathbb{R}^{n_\theta}\rightarrow\mathbb{R}^{n_\lambda}$ such that
+                    $\mathbb{E}_{\pi(\theta)}[|\lambda(\theta)|]<\infty$, define summary statistics as the conditional
+                        expectation $$s(y) :=\mathbb{E}[\lambda(\Theta)|Y=y]=\int \lambda(\theta)\pi(\theta|y)d\theta.$$
+                        Then, it holds
+                        $\left\lVert{\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs})] -
+                        s(y_\text{obs})}\right\rVert \leq \varepsilon$, and therefore
+                        \begin{equation}\label{eq:sreg_conv} \lim_{\varepsilon\rightarrow
+                        0}\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs}
+                        )]=\mathbb{E}[\lambda(\Theta)|Y=y_\text{obs}]. \end{equation} <p>
+                        In practice: Train regression model $s: y \mapsto \lambda(\theta) =
+                        (\theta^1,\ldots,\theta^k)$.
+                        </p>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Evaluation: Simple test model</h2>
+                <img src="img_info/figure_demo_all.svg" class="r-stretch" />
+                <div
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>only <b>combination</b> of <em>scale normalization</em>, <em>informativeness
+                                assessment</em>, and <em>regression target augmentation</em> permits accurate inference
+                        </li>
+                        <li>sensitivity weights give further <b>insights</b></li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Evaluation: Agent-based tumor spheroid model <img src="img_info/dividing_bg_transparent_small.gif"
+                        width="100px" /></h2>
+                <img src="img_info/figure_tumor_fits_and_weights_0.1.svg" class="r-stretch" />
+                <div
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+                    <ul style="list-style-type: '✓ ';">
+                        <li>can via sensitivity weighting in <b>complex application</b> simultaneously account for
+                            <b>informativeness</b> and <b>outliers</b>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                </aside>
+            </section>
+
+
+            <section data-background=var(--main-color) data-background-transition="zoom">
                 <h1>Efficient exact ABC with noise</h1>
             </section>
+
 
             <section>
                 <div class="r-stack">
@@ -319,6 +422,7 @@ abc.run()
                 <aside class="notes">
                 </aside>
             </section>
+
 
             <section>
                 <div>
@@ -461,109 +565,18 @@ abc.run()
             </section>
 
 
-            <section data-background=var(--main-color) data-background-transition="zoom">
-                <h1>Robust and efficient ABC via inverse machine learning models</h1>
-
-                <aside class="notes">
-                </aside>
-            </section>
-
-
-            <section>
-                <h3>Problem:</h3>
-                <h2>Fitting heterogeneous data</h2>
-                <img src="img_robust/dist_sumstat_problem_illustration.svg" class="r-stretch" />
-                <div style="text-align: right;">
-                    <small>Schälte et al., bioRxiv 2021; Schälte and Hasenauer, bioRxiv 2022</small>
-                </div>
-            </section>
-
-
-            <section>
-                <h2>How to account for data informativeness?</h2>
-                <div class="r-stack">
-                    <img src="img_info/concept0.svg" class="" height="300px" />
-                    <img src="img_info/concept.svg" class="fragment" style="background-color: #ffffff;"
-                        height="300px" />
-                </div>
-                <br />
-                <div style="text-align: left;">
-                    <ul>
-                        <li class="fragment">construct low-dimensional <b>summary statistics</b> (Fearnhead &
-                            Prangle, JRSS 2012)
-                        </li>
-                        <br />
-                        <li class="fragment">or: define <b>sensitivity weights</b> via the sensitivity matrix
-                            $S = \nabla_{\bar y} s(\bar y_\text{obs})$,
-                            $q_{i_y} = \sum_{i_\theta=1}^{n_\theta} \frac{\left|S_{i_yi_\theta}\right|}{
-                            \sum_{j_y=1}^{n_y}\left|S_{j_yi_\theta}\right|}$
-                        </li>
-                        <li class="fragment"><b>combine</b> with scale normalization (Prangle, Bay. A. 2017) and outlier
-                            correction (Schälte et al., bioRxiv 2022) via
-                            <b>adaptive weighting</b> in an <b>SMC</b> framework
-                        </li>
-                        <li class="fragment">learn functions of parameters $\lambda(\theta)$ to capture <b>higher-order
-                                moments</b></li>
-                    </ul>
-                </div>
-            </section>
-
-
-            <section>
-                <div style="text-align: left">
-                    <h2>Theorem (Optimal summary statistics)</h2>
-                    [...] Given $\lambda:\mathbb{R}^{n_\theta}\rightarrow\mathbb{R}^{n_\lambda}$ such that
-                    $\mathbb{E}_{\pi(\theta)}[|\lambda(\theta)|]<\infty$, define summary statistics as the conditional
-                        expectation $$s(y) :=\mathbb{E}[\lambda(\Theta)|Y=y]=\int \lambda(\theta)\pi(\theta|y)d\theta.$$
-                        Then, it holds
-                        $\left\lVert{\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs})] -
-                        s(y_\text{obs})}\right\rVert \leq \varepsilon$, and therefore
-                        \begin{equation}\label{eq:sreg_conv} \lim_{\varepsilon\rightarrow
-                        0}\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs}
-                        )]=\mathbb{E}[\lambda(\Theta)|Y=y_\text{obs}]. \end{equation} <p>
-                        In practice: Train regression model $s: y \mapsto \lambda(\theta) =
-                        (\theta^1,\ldots,\theta^k)$.
-                        </p>
-                </div>
-            </section>
-
-
-            <section>
-                <h2>Evaluation: Simple test model</h2>
-                <img src="img_info/figure_demo_all.svg" class="r-stretch" />
-                <div
-                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
-                    <ul style="list-style-type: '✓ ';">
-                        <li>only <b>combination</b> of <em>scale normalization</em>, <em>informativeness
-                                assessment</em>, and <em>regression target augmentation</em> permits accurate inference
-                        </li>
-                        <li>sensitivity weights give further <b>insights</b></li>
-                    </ul>
-                </div>
-            </section>
-
-
-            <section>
-                <h2>Evaluation: Agent-based tumor spheroid model <img src="img_info/dividing_bg_transparent_small.gif"
-                        width="100px" /></h2>
-                <img src="img_info/figure_tumor_fits_and_weights_0.1.svg" class="r-stretch" />
-                <div
-                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
-                    <ul style="list-style-type: '✓ ';">
-                        <li>can via sensitivity weighting in <b>complex application</b> simultaneously account for
-                            <b>informativeness</b> and <b>outliers</b>
-                        </li>
-                    </ul>
-                </div>
-
-                <aside class="notes">
-                </aside>
-            </section>
-
-
             <section data-background=var(--main-color) data-background-transition="zoom" data-auto-animate>
-                <h1>Amortized inference for pharmacological mixed-effects models</h1>
+                <h1>Amortized inference for mixed-effects models</h1>
             </section>
+
+
+            <section>
+                <h2>Amortized inference via invertible neural networks</h2>
+                you have to solve many similar problems? amortize the solution!
+                <img src="img_ame/bayesflow.svg" class="r-stretch" />
+                <div style="text-align:right;"><small>similar to: Radev et al., 2021</small></div>
+            </section>
+
 
             <section>
                 <h2>mixed-effects modeling</h2>
@@ -587,6 +600,7 @@ abc.run()
                 </div>
             </section>
 
+
             <section>
                 <h2>Problem</h2>
                 <ul style="text-align: left;">
@@ -603,22 +617,9 @@ abc.run()
                 <img class="fragment" data-fragment-index="1" src="img_ame/compute_time.svg" class="r-stretch" />
             </section>
 
-            <section>
-                <h2>Amortized inference via invertible neural networks</h2>
-                you have to solve many similar problems? amortize the solution!
-                <img src="img_ame/bayesflow.svg" class="r-stretch" />
-                <div style="text-align:right;"><small>similar to: Radev et al., 2021</small></div>
-            </section>
 
             <section>
-                <ul style="text-align: left;">
-                    <li>
-                        parameter estimation requires repeatedly evaluating an integral
-                        $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\pi(y_i|\theta)\pi(\theta|\alpha,\Sigma)d\theta$$
-                    </li>
-                </ul>
-                <br />
-                <h2>our method</h2>
+                <h2>An amortized approach</h2>
                 <div style="text-align: right">
                     <!--<small>Arruda et al., in prep.</small>-->
                 </div>
@@ -634,6 +635,7 @@ abc.run()
                     </li>
                 </ul>
             </section>
+
 
             <section>
                 <h2>Results</h2>
@@ -687,7 +689,7 @@ abc.run()
                 <div style="background-color: #ffffff99; text-align: left; padding: 30px;">
                     <h1>Thanks! Questions?</h1><br />
                     Thanks to: Jan Hasenauer, Emad Alamoudi, Emmanuel Klinger, Elba Raimundez, Zijian Wang, Jonas
-                    Arruda, the FitMultiCell and EMUNE consortia, and many more.<br /><br />
+                    Arruda, Clemens Peiter, the FitMultiCell and EMUNE consortia, and many more.<br /><br />
                     <img src="img/ack.png" />
                 </div>
             </section>
