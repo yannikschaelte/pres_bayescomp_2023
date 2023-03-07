@@ -199,11 +199,12 @@ Pink #880e4f
                     <img class='fragment' src='img/abc_principles-9.svg' style='background-color: #ffffff;' />
                 </div>
                 <small>similar to Toni et al., JRS 2009</small>
-            </section>    
-    
+            </section>
+
             <section>
-                <img src="img_pyabc/logo.svg" alt="pyABC logo black"/><br/>
-                <span style="font-family: monospace"><a href="https://github.com/icb-dcm/pyabc" target="_blank">github.com/icb-dcm/pyabc</a></span><br/>
+                <img src="img_pyabc/logo.svg" alt="pyABC logo black" /><br />
+                <span style="font-family: monospace"><a href="https://github.com/icb-dcm/pyabc"
+                        target="_blank">github.com/icb-dcm/pyabc</a></span><br />
                 <small>Klinger et al., Bioinformatics 2018 and Schälte et al., JOSS 2022</small>
                 <pre>
                     <code data-trim data-noescape class="language-python">
@@ -215,78 +216,75 @@ abc.new(db, data)
 abc.run()
                     </code>
                 </pre>
-                <img src="img_pyabc/points_extended.svg" style="width: 90%;"
-                     alt="Points"/>
-            </section>  
-    
+                <img src="img_pyabc/points_extended.svg" style="width: 90%;" alt="Points" />
+            </section>
+
             <section>
                 <h2>Parallel backends: 1 to 1,000s cores</h2>
-                <img src="img_pyabc/parallelization.svg" style="width: 40%"
-                     alt="Parallelization backends"/>
+                <img src="img_pyabc/parallelization.svg" style="width: 40%" alt="Parallelization backends" />
             </section>
-    
-    
+
+
             <section>
                 <h2>Parallelization strategies</h2>
                 <small>Klinger et al., CMSB Proceedings 2017</small>
-                <img src="img_pyabc/strategies_illustration_small.svg"
-                     alt="Parallelization strategies"/>
+                <img src="img_pyabc/strategies_illustration_small.svg" alt="Parallelization strategies" />
             </section>
 
 
-            <section>       
+            <section>
+                <img src="img_pyabc/logo_fmc_long.svg.png" height="70px" /><br />
+                <a href="https://fitmulticell.gitlab.io/">fitmulticell.gitlab.io</a><br />
+                a platform for modeling, simulation and inference for multi-scale multi-cellular models
+                <img src="img_pyabc/morpheus_gui.png" class="stretch" alt="Morpheus" />
+                <div style="text-align: right;">
+                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., NIC Proc. 2022; Alamoudi et al., bioRxiv
+                        2023</small>
+                </div>
+            </section>
+
+
+            <section>
                 <section data-transition="slide-in fade-out">
                     <h2>Application example</h2>
-                    <img src="img_pyabc/tumor_kdes_small.gif" class="stretch"
-                        alt="Tumor KDEs"/>
+                    <img src="img_pyabc/tumor_kdes_small.gif" class="stretch" alt="Tumor KDEs" />
                     <div class="conclusion" style="background-color: #ffffff">
                         ABC worked where many other methods had failed.
                     </div>
                 </section>
-        
-        
+
+
                 <section data-transition="fade-in slide-out">
                     <h2>Application example</h2>
-                    <img src="img_pyabc/dflt_37.png" class="stretch" alt="Tumor final KDE"/>
+                    <img src="img_pyabc/dflt_37.png" class="stretch" alt="Tumor final KDE" />
                     <div class="conclusion">
                         ABC worked where many other methods had failed.
                     </div>
                 </section>
-        
-        
+
+
                 <section>
-                    <img class="r-stretch" src="img_pyabc/tumor_integration.svg"/><br/>
+                    <img class="r-stretch" src="img_pyabc/tumor_integration.svg" /><br />
                     Uncertainty-aware predictions, easy data integration.
                 </section>
 
                 <section>
                     <h2>Define summary statistics</h2>
-                    <img src="img_pyabc/tumor_sumstat.svg" class="stretch"
-                        alt="Tumor summary statistics"/>
+                    <img src="img_pyabc/tumor_sumstat.svg" class="stretch" alt="Tumor summary statistics" />
                 </section>
-        
-        
+
+
                 <section data-background="img_pyabc/server_white.svg">
                     <span style="font-weight: bold; font-size: 1.2em;">
-                    <ul>
-                        <li>400 cores</li>
-                        <li>2 days</li>
-                        <li>1.8e6 simulations</li>
-                    </ul>
+                        <ul>
+                            <li>400 cores</li>
+                            <li>2 days</li>
+                            <li>1.8e6 simulations</li>
+                        </ul>
                     </span>
                 </section>
             </section>
-    
-    
-            <section>
-                <img src="img_pyabc/logo_fmc_long.svg.png" height="70px"/><br/>
-                <a href="https://fitmulticell.gitlab.io/">fitmulticell.gitlab.io</a><br/>
-                a platform for modeling, simulation and inference for multi-scale multi-cellular models
-                <img src="img_pyabc/morpheus_gui.png" class="stretch" alt="Morpheus"/>
-                <div style="text-align: right;">
-                    <small>Staruß et al., Bioinformatics 2014; Alamoudi et al., NIC Proc. 2022; Alamoudi et al., bioRxiv 2023</small>
-                </div>
-            </section>
+
 
             <!--<section>
                 <h2>Approximate Bayesian Posterior</h2>
@@ -500,7 +498,8 @@ abc.run()
                             $q_{i_y} = \sum_{i_\theta=1}^{n_\theta} \frac{\left|S_{i_yi_\theta}\right|}{
                             \sum_{j_y=1}^{n_y}\left|S_{j_yi_\theta}\right|}$
                         </li>
-                        <li class="fragment"><b>combine</b> with scale normalization (Prangle, Bay. A. 2017) and outlier correction  (Schälte et al., bioRxiv 2022) via
+                        <li class="fragment"><b>combine</b> with scale normalization (Prangle, Bay. A. 2017) and outlier
+                            correction (Schälte et al., bioRxiv 2022) via
                             <b>adaptive weighting</b> in an <b>SMC</b> framework
                         </li>
                         <li class="fragment">learn functions of parameters $\lambda(\theta)$ to capture <b>higher-order
@@ -514,24 +513,21 @@ abc.run()
                 <div style="text-align: left">
                     <h2>Theorem (Optimal summary statistics)</h2>
                     [...] Given $\lambda:\mathbb{R}^{n_\theta}\rightarrow\mathbb{R}^{n_\lambda}$ such that
-                    $\mathbb{E}_{\pi(\theta)}[|\lambda(\theta)|]<\infty$, define summary statistics as the
-                        conditional expectation $$s(y) :=\mathbb{E}[\lambda(\Theta)|Y=y]=\int
-                        \lambda(\theta)\pi(\theta|y)d\theta.$$
+                    $\mathbb{E}_{\pi(\theta)}[|\lambda(\theta)|]<\infty$, define summary statistics as the conditional
+                        expectation $$s(y) :=\mathbb{E}[\lambda(\Theta)|Y=y]=\int \lambda(\theta)\pi(\theta|y)d\theta.$$
                         Then, it holds
                         $\left\lVert{\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs})] -
                         s(y_\text{obs})}\right\rVert \leq \varepsilon$, and therefore
                         \begin{equation}\label{eq:sreg_conv} \lim_{\varepsilon\rightarrow
                         0}\mathbb{E}_{\pi_{\text{ABC},\varepsilon}}[\lambda(\Theta)|s(y_\text{obs}
-                        )]=\mathbb{E}[\lambda(\Theta)|Y=y_\text{obs}]. \end{equation}
-
-                        <p>
-                            In practice: Train regression model $s: y \mapsto \lambda(\theta) =
-                            (\theta^1,\ldots,\theta^k)$.
+                        )]=\mathbb{E}[\lambda(\Theta)|Y=y_\text{obs}]. \end{equation} <p>
+                        In practice: Train regression model $s: y \mapsto \lambda(\theta) =
+                        (\theta^1,\ldots,\theta^k)$.
                         </p>
                 </div>
             </section>
 
-            
+
             <section>
                 <h2>Evaluation: Simple test model</h2>
                 <img src="img_info/figure_demo_all.svg" class="r-stretch" />
@@ -570,74 +566,97 @@ abc.run()
             </section>
 
             <section>
-              <h2>mixed-effects modeling</h2>
-              <img src="img_ame/mixed_effects.svg"/>
-              <div style="text-align: left;">
-                <table style="border: none;" class="fragment">
-                  <tr style="border: none;"><td style="border: none;">dynamical model:</td><td style="border: none;">$\dot x = f(x,\theta)$</td></tr>
-                  <tr style="border: none;"><td style="border: none;">observables:</td><td style="border: none;">$y = h(x, \theta) + \varepsilon$</td></tr>
-                  <tr style="border: none;"><td style="border: none;">parameters:</td><td style="border: none;">$\theta = A\alpha + B\beta,\quad\beta\sim\mathcal{N}(0,\Sigma)$</td></tr>
-                </table>
-              </div>
+                <h2>mixed-effects modeling</h2>
+                <img src="img_ame/mixed_effects.svg" />
+                <div style="text-align: left;">
+                    <table style="border: none;" class="fragment">
+                        <tr style="border: none;">
+                            <td style="border: none;">dynamical model:</td>
+                            <td style="border: none;">$\dot x = f(x,\theta)$</td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="border: none;">observables:</td>
+                            <td style="border: none;">$y = h(x, \theta) + \varepsilon$</td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="border: none;">parameters:</td>
+                            <td style="border: none;">$\theta = A\alpha + B\beta,\quad\beta\sim\mathcal{N}(0,\Sigma)$
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </section>
 
             <section>
                 <h2>Problem</h2>
                 <ul style="text-align: left;">
-                  <li>
-                    <b>estimate parameters:</b> maximize over $\alpha$ and $\Sigma$ the likelihood of data $y_\text{obs}$, marginalized over random effects $\beta$,
-                    $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\color{red}{\pi(y_i|\theta)}\pi(\theta|\alpha,\Sigma)d\theta$$
-                  </li>
-                  <li class="fragment" data-fragment-index="1"><b style="color: var(--main-color);">problem: evaluating these (high-dim) integrals is challenging</b>,<br/>
-                    especially with many individuals<br/><br/></li>
+                    <li>
+                        <b>estimate parameters:</b> maximize over $\alpha$ and $\Sigma$ the likelihood of data
+                        $y_\text{obs}$, marginalized over random effects $\beta$,
+                        $$\pi(y_\text{obs}|\alpha,\Sigma) =
+                        \prod_i\int\color{red}{\pi(y_i|\theta)}\pi(\theta|\alpha,\Sigma)d\theta$$
+                    </li>
+                    <li class="fragment" data-fragment-index="1"><b style="color: var(--main-color);">problem:
+                            evaluating these (high-dim) integrals is challenging</b>,<br />
+                        especially with many individuals<br /><br /></li>
                 </ul>
-                <img class="fragment" data-fragment-index="1" src="img_ame/compute_time.svg" class="r-stretch"/>
-              </section>
-              
-              <section>
+                <img class="fragment" data-fragment-index="1" src="img_ame/compute_time.svg" class="r-stretch" />
+            </section>
+
+            <section>
                 <h2>Amortized inference via invertible neural networks</h2>
                 you have to solve many similar problems? amortize the solution!
-                <img src="img_ame/bayesflow.svg" class="r-stretch"/>
+                <img src="img_ame/bayesflow.svg" class="r-stretch" />
                 <div style="text-align:right;"><small>similar to: Radev et al., 2021</small></div>
-              </section>
-        
-              <section>
+            </section>
+
+            <section>
                 <ul style="text-align: left;">
-                  <li>
-                    parameter estimation requires repeatedly evaluating an integral
-                    $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\pi(y_i|\theta)\pi(\theta|\alpha,\Sigma)d\theta$$
-                  </li>
+                    <li>
+                        parameter estimation requires repeatedly evaluating an integral
+                        $$\pi(y_\text{obs}|\alpha,\Sigma) = \prod_i\int\pi(y_i|\theta)\pi(\theta|\alpha,\Sigma)d\theta$$
+                    </li>
                 </ul>
-                <br/>
+                <br />
                 <h2>our method</h2>
                 <div style="text-align: right">
                     <!--<small>Arruda et al., in prep.</small>-->
                 </div>
                 <ul style="text-align: left;">
-                  <li class="fragment" style="text-align: left;">
-                    <b>idea:</b> rewrite in terms of an <b>individual-specific posterior:</b>
-                    $$\begin{split}\pi(y_\text{obs}|\alpha,\Sigma) &= \prod_i\pi(y_i)\int\pi(\theta|y_i)\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}d\theta \\&= \prod_i\pi(y_i)\mathbb{E}_{\theta\sim\pi(\theta|y_i)}\left[\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}\right]\end{split}$$
-                  </li>
-                  <li class="fragment">... and approximate the posterior using a <b style="color: var(--main-color);">neural density estimator</b> trained on synthetic data!</li>
+                    <li class="fragment" style="text-align: left;">
+                        <b>idea:</b> rewrite in terms of an <b>individual-specific posterior:</b>
+                        $$\begin{split}\pi(y_\text{obs}|\alpha,\Sigma) &=
+                        \prod_i\pi(y_i)\int\pi(\theta|y_i)\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}d\theta \\&=
+                        \prod_i\pi(y_i)\mathbb{E}_{\theta\sim\pi(\theta|y_i)}\left[\frac{\pi(\theta|\alpha,\Sigma)}{\pi(\theta)}\right]\end{split}$$
+                    </li>
+                    <li class="fragment">... and approximate the posterior using a <b
+                            style="color: var(--main-color);">neural density estimator</b> trained on synthetic data!
+                    </li>
                 </ul>
-              </section>
-        
-              <section>
+            </section>
+
+            <section>
                 <h2>Results</h2>
                 <div class="r-stack">
-                  <img class="fragment current-visible" data-fragment-index="0" src="img_ame/ame_results_fit.svg" height="250px"/>
-                  <img class="fragment current-visible" data-fragment-index="1" src="img_ame/ame_results_speedup.svg" height="250px"/>
-                  <img class="fragment" data-fragment-index="2" src="img_ame/ame_results_uncertainty.png" height="250px"/>
+                    <img class="fragment current-visible" data-fragment-index="0" src="img_ame/ame_results_fit.svg"
+                        height="250px" />
+                    <img class="fragment current-visible" data-fragment-index="1" src="img_ame/ame_results_speedup.svg"
+                        height="250px" />
+                    <img class="fragment" data-fragment-index="2" src="img_ame/ame_results_uncertainty.png"
+                        height="250px" />
                 </div>
-                <div class="fragment" data-fragment-index="0" style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
-                
+                <div class="fragment" data-fragment-index="0"
+                    style="background-color: #ffffffee; padding: 10pt; border-style: solid; border-width: 4px; border-color: var(--main-color); text-align: left;">
+
                     <ul style="list-style-type: '✓ ';">
-                    <li class="fragment" data-fragment-index="0">NN <b>fits the posterior</b> well</li>
-                    <li class="fragment" data-fragment-index="1">after training once ($1-2h$), the optimization is <b>very fast</b> ($s-min$)</li>
-                    <li class="fragment" data-fragment-index="2">even <b>uncertainty analysis</b> easily possible</li>
+                        <li class="fragment" data-fragment-index="0">NN <b>fits the posterior</b> well</li>
+                        <li class="fragment" data-fragment-index="1">after training once ($1-2h$), the optimization is
+                            <b>very fast</b> ($s-min$)</li>
+                        <li class="fragment" data-fragment-index="2">even <b>uncertainty analysis</b> easily possible
+                        </li>
                     </ul>
                 </div>
-              </section>
+            </section>
 
 
             <section data-background=var(--main-color) data-background-transition="zoom" data-auto-animate>
@@ -657,7 +676,7 @@ abc.run()
                         <li>neural density estimation opens new possibilities</li>
                     </ul>
                     <span style="padding: 10px;">
-                        <img src="img_pyabc/rose_hammer.svg"/><br/>
+                        <img src="img_pyabc/rose_hammer.svg" /><br />
                         <small>Not everything is a nail.</small>
                     </span>
                 </div>
@@ -666,8 +685,9 @@ abc.run()
 
             <section data-background="img/group.jpg">
                 <div style="background-color: #ffffff99; text-align: left; padding: 30px;">
-                    <h1>Thanks! Questions?</h1><br/>
-                    Thanks to: Jan Hasenauer, Emad Alamoudi, Emmanuel Klinger, Elba Raimundez, Zijian Wang, Jonas Arruda, the FitMultiCell and EMUNE consortia, and many more.<br/><br/>
+                    <h1>Thanks! Questions?</h1><br />
+                    Thanks to: Jan Hasenauer, Emad Alamoudi, Emmanuel Klinger, Elba Raimundez, Zijian Wang, Jonas
+                    Arruda, the FitMultiCell and EMUNE consortia, and many more.<br /><br />
                     <img src="img/ack.png" />
                 </div>
             </section>
@@ -700,23 +720,21 @@ abc.run()
             <section>
                 <h2>Adaptive population sizes</h2>
                 <small>Klinger et al., CMSB Proceedings 2017</small>
-                <img src="img_pyabc/adaptive_population_size_illustrations.svg"
-                     alt="Adaptive population sizes"/>
+                <img src="img_pyabc/adaptive_population_size_illustrations.svg" alt="Adaptive population sizes" />
                 idea: adapt population size trying to match a target accuracy
             </section>
 
 
             <section>
                 <h2>Self-tuning distance functions</h2>
-                <small>based on Prangle, Bayesian Analysis 2015</small><br/>
-                <img src="img_pyabc/adaptive_distances.svg" class="stretch"
-                     alt="Adaptive distances"/>
+                <small>based on Prangle, Bayesian Analysis 2015</small><br />
+                <img src="img_pyabc/adaptive_distances.svg" class="stretch" alt="Adaptive distances" />
             </section>
 
 
             <section>
                 <h2>And ...</h2>
-                <img src="img_pyabc/and.svg" alt="And"/>
+                <img src="img_pyabc/and.svg" alt="And" />
                 <h2>...</h2>
             </section>
 
